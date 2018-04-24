@@ -15,7 +15,7 @@ before_script:
   - cd build
   - cmake ..
   - cmake --build .
-  - sudo cmake --build . --target install
+  - sudo make install
   - cd ~
   - sudo apt-get install -y libopenblas-dev
 
