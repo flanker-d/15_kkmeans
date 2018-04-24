@@ -17,10 +17,7 @@ set_target_properties(kkmeans PROPERTIES
         COMPILE_OPTIONS -Wpedantic -Wall -Wextra
         )
 
-install(TARGETS kkmeans
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
+install(TARGETS kkmeans RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
