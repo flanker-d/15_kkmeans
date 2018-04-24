@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/flanker-d/otuscpp_15_kkmeans.svg?branch=master)](https://travis-ci.org/flanker-d/otuscpp_15_kkmeans)

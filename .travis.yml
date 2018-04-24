@@ -1,0 +1,27 @@
+language: cpp
+before_script:
+  - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -qq
+  - sudo apt-get install -y g++-5
+  - sudo rm -f /usr/bin/gcc
+  - sudo rm -f /usr/bin/g++
+  - sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
+  - sudo ln -s /usr/bin/g++-5 /usr/bin/g++
+  - g++ -v
+  - sudo apt-get install -y libdlib-dev
+  - sudo apt-get install -y libopenblas-dev
+
+script:
+  - cmake .
+  - cmake --build .
+  - cmake --build . --target package
+
+compiler: g++
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script:
+    - curl -T kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uflanker-d:$BINTRAY_API_KEY "https://api.bintray.com/content/flankerd/otuscpp/15_kkmeans/$TRAVIS_BUILD_NUMBER/kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    on:
+      branch: master

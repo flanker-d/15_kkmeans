@@ -57,6 +57,7 @@ int main(int argc, char **argv)
         double y = point(1) + 100;
         img[x][y] = dlib::colormap_jet(cluster, 0, clusters_num);
         i++;
+        std::cout << x << ";" << y << ";" << "cluster" << cluster + 1 <<std::endl;
       }
     }
     dlib::save_png(img, "./kmeans.png");
